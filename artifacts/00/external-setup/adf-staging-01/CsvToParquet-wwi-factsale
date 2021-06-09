@@ -1,0 +1,335 @@
+{
+    "name": "CsvToParquet",
+    "type": "Copy",
+    "dependsOn": [
+        {
+            "activity": "GetSourceMetadata",
+            "dependencyConditions": [
+                "Succeeded"
+            ]
+        }
+    ],
+    "policy": {
+        "timeout": "7.00:00:00",
+        "retry": 0,
+        "retryIntervalInSeconds": 30,
+        "secureOutput": false,
+        "secureInput": false
+    },
+    "userProperties": [],
+    "typeProperties": {
+        "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": {
+                "type": "AzureBlobFSReadSettings",
+                "recursive": true,
+                "enablePartitionDiscovery": false
+            },
+            "formatSettings": {
+                "type": "DelimitedTextReadSettings"
+            }
+        },
+        "sink": {
+            "type": "ParquetSink",
+            "storeSettings": {
+                "type": "AzureBlobFSWriteSettings",
+                "maxConcurrentConnections": 1,
+                "copyBehavior": "PreserveHierarchy"
+            },
+            "formatSettings": {
+                "type": "ParquetWriteSettings"
+            }
+        },
+        "enableStaging": false,
+        "translator": {
+            "type": "TabularTranslator",
+            "mappings": [
+                {
+                    "source": {
+                        "name": "Sale Key",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "SaleKey",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "City Key",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "CityKey",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Customer Key",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "CustomerKey",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Bill To Customer Key",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "BillToCustomerKey",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Stock Item Key",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "StockItemKey",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Invoice Date Key",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "InvoiceDateKey",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Delivery Date Key",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "DeliveryDateKey",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Salesperson Key",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "SalespersonKey",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "WWI Invoice ID",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "WWIInvoiceID",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Description",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "Description",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Package",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "Package",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Quantity",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "Quantity",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Unit Price",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "UnitPrice",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Tax Rate",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "TaxRate",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Total Excluding Tax",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "TotalExcludingTax",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Tax Amount",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "TaxAmount",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Profit",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "Profit",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Total Including Tax",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "TotalIncludingTax",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Total Dry Items",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "TotalDryItems",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Total Chiller Items",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "TotalChillerItems",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                },
+                {
+                    "source": {
+                        "name": "Lineage Key",
+                        "type": "String",
+                        "physicalType": "String"
+                    },
+                    "sink": {
+                        "name": "LineageKey",
+                        "type": "String",
+                        "physicalType": "UTF8"
+                    }
+                }
+            ],
+            "typeConversion": true,
+            "typeConversionSettings": {
+                "allowDataTruncation": true,
+                "treatBooleanAsNumber": false
+            }
+        }
+    },
+    "inputs": [
+        {
+            "referenceName": "asadatalakeac65445Csv",
+            "type": "DatasetReference",
+            "parameters": {
+                "in_file_name": {
+                    "value": "@pipeline().parameters.in_file_name",
+                    "type": "Expression"
+                },
+                "in_dlmtr": {
+                    "value": "@pipeline().parameters.in_dlmtr",
+                    "type": "Expression"
+                }
+            }
+        }
+    ],
+    "outputs": [
+        {
+            "referenceName": "asadatalakeac65445Parquet",
+            "type": "DatasetReference",
+            "parameters": {
+                "in_file_name": {
+                    "value": "@pipeline().parameters.in_file_name",
+                    "type": "Expression"
+                }
+            }
+        }
+    ]
+}
