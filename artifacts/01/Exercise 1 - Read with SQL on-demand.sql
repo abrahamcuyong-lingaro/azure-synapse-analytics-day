@@ -2,7 +2,7 @@ SELECT
     COUNT(*)
 FROM
     OPENROWSET(
-        BULK 'https://<primary_storage>.dfs.core.windows.net/wwi/factsale-csv/2012/Q1/*/*',
+        BULK 'https://<primary_storage>.dfs.core.windows.net/dev/wwi-factsale.csv',
  		FORMAT = 'CSV', 
 		FIELDTERMINATOR ='|', 
         FIELDQUOTE = '',
